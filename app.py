@@ -18,10 +18,13 @@ from flask import *
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
+
 def basic():
+    i = 1
     if request.method=='POST':
         upload = request.files['upload']
-        storage.child("music/test.mp3").put(upload)
+        storage.child("music/test"+str(i)+".mp3").put(upload)
+        i+=1
         return "successful"
     return render_template('index.html')
 

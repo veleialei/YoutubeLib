@@ -35,7 +35,9 @@ i = 1
 def basic():
     return render_template('index.html')
     
-
+#此处要改成接受 youtube link
+#然后接收了立刻 download到本地
+#然后传到 storage 里面
 @app.route('/todo', methods=['GET', 'POST'])
 def todo():
     if request.method == 'POST':
@@ -51,6 +53,7 @@ def todo():
          to = {}
     return render_template('todo.html', t=to.values())
 
+#就是显示媒体库里面有多少
 @app.route('/uploads')
 def uploads():
     global i

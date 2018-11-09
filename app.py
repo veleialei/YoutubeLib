@@ -13,10 +13,6 @@ firebase = pyrebase.initialize_app(config)
 
 storage = firebase.storage()
 
-storage.child("images/new.jpg").put("image.jpg")
-storage.child("images/new.jpg").download("example.jpg")
-print(storage.child("images/new.jpg").get_url(None))
-
 from flask import *
 
 app = Flask(__name__)

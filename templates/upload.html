@@ -8,19 +8,26 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="upload">
-        <br>
-        <br>
-        <button type="submit">Upload</button>
-    </form>
-    
-    {% for i in l%}
-    <div>
-        <audio controls>
-            <source src="{{i}}" type="audio/mp3" autoplay>
-        </audio>
+    <nav class="navbar navbar-default">
+        <h1>Upload Music</h1>
+        <a href="/">Home</a>
+    </nav>
+    <div class="jumbotron">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="upload">
+            <br>
+            <br>
+            <button type="submit">Upload</button>
+        </form>
     </div>
-    {% endfor %}
+    <div class="container-fluid">
+        {% for i in l%}
+        <div class="list-group">
+            <audio controls  class="list-group-item">
+                <source src="{{i}}" type="audio/mp3" autoplay>
+            </audio>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

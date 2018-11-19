@@ -35,14 +35,16 @@ def todo():
 def uploads():
     global i
     if request.method=='POST':
-        # url = request.form['url']
-        # print(url)
-        # download(url)
-        upload = request.files['upload']
-        a = str(upload)
-        print(a)
-        print(type(upload))
-        # storage.child("music/test"+str(i)+".mp3").put(upload)
+        # upload = request.files['upload']
+        # a = str(upload)
+        # print(a)
+        # print(type(upload))
+
+        url = request.form['url']
+        print(url)
+        download(url)
+        
+        storage.child("music/"+url+".mp3").put(url+".mp3")
         # i+=1
     links = []
     for id in range(1,3):

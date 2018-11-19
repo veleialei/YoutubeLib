@@ -4,18 +4,16 @@ from flask import render_template, request
 import pyrebase
 from config import Config
 
-
 firebase = pyrebase.initialize_app(Config)
 storage = firebase.storage()
 db = firebase.database()
 
-i = 1
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/index')
+@app.route('/')
 def basic():
     return render_template('index.html')
 
-@app.route('/todo', methods=['GET', 'POST'])
+@app.route('/wishlist', methods=['GET', 'POST'])
 def todo():
     if request.method == 'POST':
         if request.form['submit'] == 'add':
@@ -28,10 +26,9 @@ def todo():
     to = todo.val()
     if to == None:
          to = {}
-    return render_template('todo.html', t=to.values())
+    return render_template('wishlist.html', t=to.values())
 
-#就是显示媒体库里面有多少
-@app.route('/uploads', methods=['GET', 'POST'])
+@app.route('/upload', methods=['GET', 'POST'])
 def uploads():
     global i
     if request.method=='POST':

@@ -7,12 +7,17 @@
         <title>Youtube Library</title>
     </head>
     <body>
-        <div>
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('todo') }}">Todo</a>
-            <a href="{{ url_for('upload') }}">Upload</a>
-        </div>
+        <div class = "container">
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <a class="nav-link"  href='index'>Home</a>
+            <a class="nav-link" href='wishlist'>WishList</a>
+            <a class="nav-link" href='upload'>Upload</a>
+            <a class="nav-link" href='musics'>Musics</a>
+        </nav>
+        <h1>Youtube Library</h1>
         <hr>
+        
         {% block content %}{% endblock %}
+        </div>
     </body>
 </html>

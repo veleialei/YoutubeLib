@@ -1,2 +1,11 @@
 from subprocess import call
-call(["youtube-dl", "--extract-audio", "--audio-format", "mp3", "--audio-quality", "0", "https://www.youtube.com/watch?v=7k3rrneAFlk"])
+import pyrebase
+from config import Config
+
+firebase = pyrebase.initialize_app(Config)
+storage = firebase.storage()
+def download(url):
+    call(["youtube-dl", "--extract-audio", "--audio-format", "mp3", "--audio-quality", "0", "https://www.youtube.com/watch?v="+url])
+    
+    #storage.child("music/"+url+".mp3").put(upload)
+download("7k3rrneAFlk")

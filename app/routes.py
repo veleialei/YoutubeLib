@@ -7,8 +7,6 @@ firebase = pyrebase.initialize_app(Config)
 storage = firebase.storage()
 db = firebase.database()
 
-users = db.child("names").remove()
-
 i = 1
 
 @app.route('/', methods=['GET', 'POST'])
@@ -31,13 +29,15 @@ def todo():
     return render_template('todo.html', t=to.values())
 
 #就是显示媒体库里面有多少
-@app.route('/uploads')
+@app.route('/uploads', methods=['GET', 'POST'])
 def uploads():
     global i
     if request.method=='POST':
-        upload = request.files['upload']
-        storage.child("music/test"+str(i)+".mp3").put(upload)
-        i+=1
+        name = request.form['name']
+        print(name)
+        # upload = request.files['upload']
+        # storage.child("music/test"+str(i)+".mp3").put(upload)
+        # i+=1
     links = []
     for id in range(1,3):
         links.append(storage.child('music/test' + str(id) + '.mp3').get_url(None))

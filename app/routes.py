@@ -1,7 +1,9 @@
 from app import app
+from youtubedl import *
 from flask import render_template, request
 import pyrebase
 from config import Config
+
 
 firebase = pyrebase.initialize_app(Config)
 storage = firebase.storage()
@@ -33,9 +35,13 @@ def todo():
 def uploads():
     global i
     if request.method=='POST':
-        name = request.form['name']
-        print(name)
-        # upload = request.files['upload']
+        # url = request.form['url']
+        # print(url)
+        # download(url)
+        upload = request.files['upload']
+        a = str(upload)
+        print(a)
+        print(type(upload))
         # storage.child("music/test"+str(i)+".mp3").put(upload)
         # i+=1
     links = []

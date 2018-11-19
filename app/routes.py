@@ -39,12 +39,14 @@ def uploads():
         print(url)
         download(url)
         storage.child("music/"+url+".mp3").put("music/"+url+".mp3")
-
+        db.child("music").push(url)
     return render_template('upload.html')
 
 @app.route('/musics')
 def musics():
+    musics = db.child("music").get()
+    urls = musics.val().values()
     links = []
-    for id in range(1,3):
-        links.append(storage.child('music/test' + str(id) + '.mp3').get_url(None))
+    for url in urls:
+        links.append(storage.child('music/' + url + '.mp3').get_url(None))
     return render_template('musics.html', l = links)

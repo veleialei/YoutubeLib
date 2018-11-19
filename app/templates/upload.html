@@ -14,26 +14,11 @@
     </nav>
     <div class="jumbotron">
         <form action="/uploads" method="post" enctype="multipart/form-data">
-            <input type="file" name="upload">
-            <br>
-            <br>
-            <button type="submit">Upload</button>
-        </form>
-        <form action="/uploads" method="post" enctype="multipart/form-data">
             <input type="text" name="url">
             <br>
             <br>
             <button type="submit">Upload</button>
         </form>
-    </div>
-    <div class="container-fluid">
-        {% for i in l%}
-        <div class="list-group">
-            <audio controls  class="list-group-item">
-                <source src="{{i}}" type="audio/mp3" autoplay>
-            </audio>
-        </div>
-        {% endfor %}
     </div>
 </body>
 </html>

@@ -35,19 +35,16 @@ def todo():
 def uploads():
     global i
     if request.method=='POST':
-        # upload = request.files['upload']
-        # a = str(upload)
-        # print(a)
-        # print(type(upload))
-
         url = request.form['url']
         print(url)
         download(url)
-        
-        storage.child("music/"+url+".mp3").put(url+".mp3")
-        # i+=1
+        storage.child("music/"+url+".mp3").put("music/"+url+".mp3")
+
+    return render_template('upload.html')
+
+@app.route('/musics')
+def musics():
     links = []
     for id in range(1,3):
         links.append(storage.child('music/test' + str(id) + '.mp3').get_url(None))
-    return render_template('upload.html', l = links)
-
+    return render_template('musics.html', l = links)

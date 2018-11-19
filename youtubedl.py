@@ -10,6 +10,7 @@ def download(url):
         length = len(start)
         if line.startswith(start):
             print("hahaha get you",line[length:])
-            os.rename(line[length:], url+".mp3")
+            os.rename(line[length:], "music/"+url+".mp3")
 # url = "7k3rrneAFlk"
+# url = "-Sdq2Gk37qw"
 # download(url)

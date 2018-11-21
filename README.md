@@ -133,14 +133,5 @@ Responses:
 <table>
 	<tr><td>Code</td><td>Description</td></tr>
 	<tr><td>200</td><td>Music List<br/>
-<pre>
-{
-	"eventid": 0,
-	"eventname": "string",
-	"userid": 0,		
-	"avail": 0,
-	"purchased": 0
-}
-</pre></td></tr>
 </table>
 </details>

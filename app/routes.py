@@ -49,6 +49,11 @@ def musics():
 
 def worker(url):
     print(url)
-    download(url)
-    storage.child("music/"+url+".mp3").put("music/"+url+".mp3")
-    db.child("music").push(url)
+    try:
+        download(url)
+        storage.child("music/"+url+".mp3").put("music/"+url+".mp3")
+        db.child("music").push(url)
+    except:
+        db.child("failure").push(url)
+        print("failed")
+    print("successful")

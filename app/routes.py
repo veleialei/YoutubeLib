@@ -3,7 +3,9 @@ from youtubedl import *
 from flask import render_template, request
 import pyrebase
 from config import Config
+from concurrent.futures import ThreadPoolExecutor
 
+executor = ThreadPoolExecutor(12)
 firebase = pyrebase.initialize_app(Config)
 storage = firebase.storage()
 db = firebase.database()
@@ -33,10 +35,7 @@ def uploads():
     global i
     if request.method=='POST':
         url = request.form['url']
-        print(url)
-        download(url)
-        storage.child("music/"+url+".mp3").put("music/"+url+".mp3")
-        db.child("music").push(url)
+        executor.submit(worker, url)
     return render_template('upload.html')
 
 @app.route('/musics')
@@ -47,3 +46,9 @@ def musics():
     for url in urls:
         links.append(storage.child('music/' + url + '.mp3').get_url(None))
     return render_template('musics.html', l = links)
+
+def worker(url):
+    print(url)
+    download(url)
+    storage.child("music/"+url+".mp3").put("music/"+url+".mp3")
+    db.child("music").push(url)

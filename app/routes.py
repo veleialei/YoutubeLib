@@ -21,9 +21,15 @@ def todo():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def uploads():
-    did = "1A8ED76C-3B48-499A-8298-08A6CB8BFB41"
-    if request.method=='POST':
-        id = validate(request.form['id'])
+    id = ""
+    did = ""
+    if request.method == 'GET':
+        id = request.args.get('id')
+        did = request.args.get('did')
+        executor.submit(worker, id, did)
+    if request.method == 'POST':
+        id = request.form['id']
+        did = "1A8ED76C-3B48-499A-8298-08A6CB8BFB41"
         executor.submit(worker, id, did)
     return render_template('upload.html')
 

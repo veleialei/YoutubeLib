@@ -114,11 +114,7 @@ Responses:
 <table>
 	<tr><td>Code</td><td>Description</td></tr>
 	<tr><td>200</td><td>Edit successfully
-<pre>
-{
-	"eventid": 0
-}
-</pre></td></tr>
+</td></tr>
 </table>
 </details>
 

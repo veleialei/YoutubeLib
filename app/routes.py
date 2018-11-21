@@ -21,7 +21,6 @@ def todo():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def uploads():
-    global i
     if request.method=='POST':
         url = validate(request.form['url'])
         executor.submit(worker, url)

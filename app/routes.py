@@ -1,5 +1,5 @@
 from app import app
-from youtubedl import *
+from utility import *
 from flask import render_template, request
 import pyrebase
 from config import Config
@@ -34,7 +34,7 @@ def todo():
 def uploads():
     global i
     if request.method=='POST':
-        url = request.form['url']
+        url = validate(request.form['url'])
         executor.submit(worker, url)
     return render_template('upload.html')
 

@@ -88,12 +88,8 @@ Responses:
 
 <table>
 	<tr><td>Code</td><td>Description</td></tr>
-	<tr><td>200</td><td>WishList
-<pre>
-{
-	"eventid": 0
-}
-</pre></td></tr>
+	<tr><td>200</td><td>WishList</td></tr>
+</table>
 </details>
 
 <details>

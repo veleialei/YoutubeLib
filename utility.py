@@ -72,7 +72,6 @@ def searchYoutube(keyword):
     url= "https://www.googleapis.com/youtube/v3/search?" + query
     content = requests.get(url).text
 
-
     jsondata = json.loads(content)
     items = jsondata['items']
     res = []

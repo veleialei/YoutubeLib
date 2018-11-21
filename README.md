@@ -42,24 +42,16 @@ Responses:
 
 <table>
 	<tr><td>Code</td><td>Description</td></tr>
-	<tr><td>200</td><td>Upload Form
-<pre>
-{
-	"eventid": 0
-}
-</pre></td></tr>
+	<tr><td>200</td><td>Upload Form</td></tr>
+</table>
 </details>
 
 <details>
 <summary>POST /upload </summary>
-
 Body:
-
 <pre>
 {
-	"userid": 0,
-	"eventname": "string",
-	"numtickets": 0
+	"url": "string"
 }
 </pre>
 
@@ -67,19 +59,9 @@ Responses:
 
 <table>
 	<tr><td>Code</td><td>Description</td></tr>
-	<tr><td>200</td><td>MP3 is converting
-<pre>
-{
-	"eventid": 0
-}
-</pre></td></tr>
 	<tr><td>400</td><td>Url is invalid</td></tr>
 </table>
 </details>
-
-
-
-
 
 <details>
 <summary>GET /wishlist </summary>
@@ -99,12 +81,9 @@ Body:
 
 <pre>
 {
-	"userid": 0,
-	"eventname": "string",
-	"numtickets": 0
+	"name": "string"
 }
 </pre>
-
 Responses:
 
 <table>

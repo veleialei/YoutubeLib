@@ -31,6 +31,3 @@ def uploads():
 def musics():
     links = get_musics()
     return render_template('musics.html', l = links)
-
-
-    

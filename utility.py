@@ -17,9 +17,6 @@ def download(url):
         if line.startswith(start):
             print("hahaha get you",line[length:])
             os.rename(line[length:], "music/"+url+".mp3")
-# url = "7k3rrneAFlk"
-# url = "-Sdq2Gk37qw"
-# download(url)
 
 def validate(url):
     res = ""
@@ -41,6 +38,7 @@ def worker(url):
 def get_musics():
     musics = db.child("music").get()
     urls = musics.val().values()
+    urls = set(urls)
     links = []
     for url in urls:
         links.append(storage.child('music/' + url + '.mp3').get_url(None))

@@ -21,12 +21,21 @@ def todo():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def uploads():
+    did = "hHW1oY26kxQ 1A8ED76C-3B48-499A-8298-08A6CB8BFB41"
     if request.method=='POST':
-        url = validate(request.form['url'])
-        executor.submit(worker, url)
+        id = validate(request.form['id'])
+        executor.submit(worker, id, did)
     return render_template('upload.html')
 
 @app.route('/musics')
 def musics():
     links = get_musics()
     return render_template('musics.html', l = links)
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    links = []
+    if request.method=='POST':
+        keyword = request.form['keyword']
+        links = searchYoutube(keyword)
+    return render_template('search.html', l = links)

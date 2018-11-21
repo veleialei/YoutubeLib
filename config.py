@@ -6,3 +6,5 @@ Config = {
     "storageBucket": "sideproject-a7c5c.appspot.com",
     "messagingSenderId": "72493675211"
 }
+
+YoutubeAPIKey = "AIzaSyBRG1jU1v7YlpfCNcC2uOyyyx8l3EjyJ60"

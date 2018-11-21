@@ -1,10 +1,16 @@
 import os
 import pyrebase
-from config import Config
+from config import *
+from urllib import parse
+import json
+import requests
 
 firebase = pyrebase.initialize_app(Config)
 storage = firebase.storage()
 db = firebase.database()
+
+keyword = "周杰伦"
+
 
 def download(url):
     start = "[ffmpeg] Destination: "
@@ -24,12 +30,14 @@ def validate(url):
     res = parts[len(parts)-1]
     return res
 
-def worker(url):
-    print(url)
+def worker(id, did):
+    print(id)
     try:
-        download(url)
-        storage.child("music/"+url+".mp3").put("music/"+url+".mp3")
-        db.child("music").push(url)
+        download(id)
+        storage.child("music/"+id+".mp3").put("music/"+id+".mp3")
+        db.child("music").push(id)
+        db.child("task").child(did).push({"id": id})
+
         print("successful")
     except:
         db.child("failure").push(url)
@@ -56,3 +64,21 @@ def get_wishlist():
     todo = db.child("todo").get()
     to = todo.val()
     return to
+
+def searchYoutube(keyword):
+    base_url = "https://www.youtube.com/watch?v="
+    f = {'part' : 'snippet', 'maxResults':'25', 'q':keyword, 'key':YoutubeAPIKey}
+    query = parse.urlencode(f)
+    url= "https://www.googleapis.com/youtube/v3/search?" + query
+    content = requests.get(url).text
+
+
+    jsondata = json.loads(content)
+    items = jsondata['items']
+    res = []
+    for i in items:
+        if "videoId" in i['id']:
+            print (i['id'])
+            res.append(base_url + i['id']['videoId'])
+    return res
+    

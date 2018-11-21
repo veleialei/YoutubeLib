@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="jumbotron">
+        <form action="/search" method="post" enctype="multipart/form-data">
+            <input type="text" name="keyword">
+            <br>
+            <br>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="container-fluid">
+        {% for i in l%}
+        <div>
+            <p>{{i}}</p>
+            <!-- <audio controls>
+                <source src="{{i}}" type="audio/mp3" autoplay>
+            </audio> -->
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
